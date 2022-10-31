@@ -1,15 +1,9 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import NavBar from "./components/NavBar";
+import NavBar from "./features/NavBar";
+import HomeContainer from "./features/HomeContainer";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    fetch("/hello")
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
-  }, []);
 
   return (
     <>
@@ -21,7 +15,7 @@ function App() {
               <h1 className="text-3xl font-bold underline">Test Route</h1>
             </Route>
             <Route exact path="/">
-              <h1 className="text-3xl font-bold underline">Page Count: {count}</h1>
+              <HomeContainer />
             </Route>
           </Switch>
         </div>
