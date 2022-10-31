@@ -11,8 +11,6 @@ function HomeContainer() {
     const popularArt = useSelector(state => state.popularNews.entities)
     // const latestArticles = articles.slice(1)
 
-    console.log(popularArt)
-
     const homeArticles = articles.map(a => <HomeArticles key={a.title} article={a} />)
 
     const popularArticles = popularArt.map(a => <PopularNews key={a.title} popularArt={a} />)
@@ -30,9 +28,15 @@ function HomeContainer() {
 
 
     return (
-        <div>
-            {articles && homeArticles}
-            {popularArt && popularArticles}
+        <div className="flex justify-center">
+            <div className='flex flex-row w-3/4'>
+                <div className='px-2'>
+                    {homeArticles}
+                </div>
+                <div className='px-2'>
+                    {popularArticles}
+                </div>
+            </div>
         </div>
     )
 }
