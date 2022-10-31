@@ -6,6 +6,7 @@ export const fetchNews = createAsyncThunk("newsArticles/fetchNews", () => {
         .then((data) => data.results);
 });
 
+
 const newsSlice = createSlice({
     name: "newsArticles",
     initialState: {
@@ -17,13 +18,9 @@ const newsSlice = createSlice({
         }
     },
     extraReducers: {
-        [fetchNews.pending](state) {
-            state.status = "loading";
-        },
         [fetchNews.fulfilled](state, action) {
             state.entities = action.payload;
-            state.status = "idle";
-        }
+        },
     }
 })
 
