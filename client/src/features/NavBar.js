@@ -1,8 +1,16 @@
 import React from 'react'
 import { useHistory}  from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchTopic } from './reducers/newsTopicSlice';
 
 function NavBar() {
     const history = useHistory()
+    const dispatch = useDispatch()
+
+    function handleClick(e){
+        const topic = e.target.textContent.toLowerCase()
+        dispatch(fetchTopic(topic))
+    }
 
     return (
         <div className='flex justify-center'>
@@ -13,25 +21,25 @@ function NavBar() {
             <div>
                 <ul className='flex flex-row'>
                     <li className='p-1 hover:text-slate-600 hover:cursor-pointer'>Home</li>
-                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer'>Arts</li>
-                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer'>Books</li>
-                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer'>Business</li>
-                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer'>Fashion</li>
-                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer'>Food</li>
-                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer'>Health</li>
-                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer'>Home</li>
-                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer'>Insider</li>
-                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer'>Movies</li>
-                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer'>Opinion</li>
-                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer'>Politics</li>
-                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer'>Real Estate</li>
-                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer'>Science</li>
-                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer'>Sports</li>
-                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer'>Technology</li>
-                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer'>Theater</li>
-                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer'>Travel</li>
-                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer'>US</li>
-                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer'>World</li>
+                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer' onClick={handleClick}>Arts</li>
+                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer' onClick={handleClick}>Books</li>
+                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer' onClick={handleClick}>Business</li>
+                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer' onClick={handleClick}>Fashion</li>
+                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer' onClick={handleClick}>Food</li>
+                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer' onClick={handleClick}>Health</li>
+                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer' onClick={handleClick}>Home</li>
+                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer' onClick={handleClick}>Insider</li>
+                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer' onClick={handleClick}>Movies</li>
+                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer' onClick={handleClick}>Opinion</li>
+                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer' onClick={handleClick}>Politics</li>
+                    {/* <li className='p-1 hover:text-slate-600 hover:cursor-pointer' onClick={handleClick}>Real Estate</li> */}
+                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer' onClick={handleClick}>Science</li>
+                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer' onClick={handleClick}>Sports</li>
+                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer' onClick={handleClick}>Technology</li>
+                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer' onClick={handleClick}>Theater</li>
+                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer' onClick={handleClick}>Travel</li>
+                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer' onClick={handleClick}>US</li>
+                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer' onClick={handleClick}>World</li>
                 </ul>
             </div>
         </div>
