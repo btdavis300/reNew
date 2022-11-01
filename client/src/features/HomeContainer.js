@@ -28,11 +28,11 @@ function HomeContainer() {
 
     return (
         <div className="flex justify-center">
-            <div className='flex flex-row'>
-                <div className='px-10 m-5 border-r'>
+            <div className='flex flex-1 px-32'>
+                <div className='px-10 m-5 w-4/5 border-r'>
                     {homeArticles}
                 </div>
-                <div className='px-2 m-5'>
+                <div className='px-2 w-1/3 m-5'>
                     {popularArticles}
                 </div>
             </div>
