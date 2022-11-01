@@ -7,8 +7,8 @@ function App() {
 
   return (
     <>
-      <NavBar />
       <BrowserRouter>
+      <NavBar />
         <div className="App">
           <Switch>
             <Route exact path="/testing">

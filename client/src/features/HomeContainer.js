@@ -30,9 +30,11 @@ function HomeContainer() {
         <div className="flex justify-center">
             <div className='flex flex-1 px-32'>
                 <div className='px-10 m-5 w-4/5 border-r'>
+                    <h1 className='italic text-lg text-red-500'>Latest News</h1>
                     {homeArticles}
                 </div>
                 <div className='px-2 w-1/3 m-5'>
+                    <h1 className='italic text-lg text-red-500'>Popular News</h1>
                     {popularArticles}
                 </div>
             </div>
