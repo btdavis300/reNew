@@ -15,7 +15,7 @@ function App() {
             <Route exact path="/">
               <HomeContainer />
             </Route>
-            <Route exact path=''>
+            <Route exact path="/topic">
               { articles.length > 0 && <TopicContainer /> } 
             </Route>
           </Switch>

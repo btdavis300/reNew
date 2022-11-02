@@ -1,18 +1,19 @@
 import React from 'react'
-import { useHistory}  from 'react-router-dom'
-import { useDispatch } from 'react-redux';
+import { useHistory }  from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchTopic } from './reducers/newsTopicSlice';
 import { titleClicked } from './reducers/topicTitleSlice';
 
 function NavBar() {
     const history = useHistory()
     const dispatch = useDispatch()
+    const section = useSelector(state => state.topicTitle.title).toLowerCase()
 
     function handleClick(e){
         const topic = e.target.textContent.toLowerCase()
         dispatch(fetchTopic(topic))
         dispatch(titleClicked(topic.toUpperCase()))
-        history.push("./newssection")
+        history.push('/topic')
     }
 
     function handleHome(){
@@ -34,7 +35,6 @@ function NavBar() {
                     <li className='p-1 hover:text-slate-600 hover:cursor-pointer hover:bg-slate-100 rounded' onClick={handleClick}>Fashion</li>
                     <li className='p-1 hover:text-slate-600 hover:cursor-pointer hover:bg-slate-100 rounded' onClick={handleClick}>Food</li>
                     <li className='p-1 hover:text-slate-600 hover:cursor-pointer hover:bg-slate-100 rounded' onClick={handleClick}>Health</li>
-                    <li className='p-1 hover:text-slate-600 hover:cursor-pointer hover:bg-slate-100 rounded' onClick={handleClick}>Home</li>
                     <li className='p-1 hover:text-slate-600 hover:cursor-pointer hover:bg-slate-100 rounded' onClick={handleClick}>Insider</li>
                     <li className='p-1 hover:text-slate-600 hover:cursor-pointer hover:bg-slate-100 rounded' onClick={handleClick}>Movies</li>
                     <li className='p-1 hover:text-slate-600 hover:cursor-pointer hover:bg-slate-100 rounded' onClick={handleClick}>Opinion</li>
