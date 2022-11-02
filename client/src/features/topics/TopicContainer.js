@@ -18,7 +18,7 @@ function TopicContainer() {
       <div>
         <MainArticle article={mainArt}/>
       </div>
-      <div>
+      <div className='flex flex-wrap'>
         {topicArticles}
       </div>
       </div>

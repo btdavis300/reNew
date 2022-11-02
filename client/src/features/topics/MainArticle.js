@@ -3,7 +3,7 @@ import imagePlaceholder from '../../assets/news-article-placeholder.png'
 
 function MainArticle({ article }) {
   return (
-    <div className='flex flex-row justify-evenly w-full'>
+    <div className='flex flex-row justify-evenly w-full border-b border-black pb-10'>
         <div className='w-5/12 flex items-center'>
             <div className='flex flex-col hover:text-slate-600'>
             <h1 className='text-4xl italic font-semi-bold hover:underline'>{article.title}</h1>
