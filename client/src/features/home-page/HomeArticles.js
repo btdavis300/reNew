@@ -1,5 +1,5 @@
 import React from 'react'
-import imagePlaceholder from '../assets/news-article-placeholder.png'
+import imagePlaceholder from '../../assets/news-article-placeholder.png'
 
 function HomeArticles({ article }) {
 

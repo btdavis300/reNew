@@ -1,9 +1,11 @@
-import { useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
 import NavBar from "./features/NavBar";
-import HomeContainer from "./features/HomeContainer";
+import HomeContainer from "./features/home-page/HomeContainer";
+import TopicContainer from "./features/topics/TopicContainer";
 
 function App() {
+  const articles = useSelector(state => state.newsTopic.entities)
 
   return (
     <>
@@ -11,11 +13,11 @@ function App() {
       <NavBar />
         <div className="App">
           <Switch>
-            <Route exact path="/testing">
-              <h1 className="text-3xl font-bold underline">Test Route</h1>
-            </Route>
             <Route exact path="/">
               <HomeContainer />
+            </Route>
+            <Route exact path="/newssection">
+              { articles &&<TopicContainer /> }
             </Route>
           </Switch>
         </div>
