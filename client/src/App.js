@@ -3,9 +3,12 @@ import { useSelector } from "react-redux";
 import NavBar from "./features/NavBar";
 import HomeContainer from "./features/home-page/HomeContainer";
 import TopicContainer from "./features/topics/TopicContainer";
+import Article from "./features/topics/Article";
 
 function App() {
   const articles = useSelector(state => state.newsTopic.entities)
+  const showArticle = useSelector(state => state.showArticle.set)
+
   return (
     <>
       <BrowserRouter>
@@ -16,7 +19,11 @@ function App() {
               <HomeContainer />
             </Route>
             <Route exact path="/topic">
-              { articles.length > 0 && <TopicContainer /> } 
+              { !showArticle ?
+              ( articles.length > 0 && <TopicContainer /> ) 
+              :
+              <Article />
+              }
             </Route>
           </Switch>
         </div>

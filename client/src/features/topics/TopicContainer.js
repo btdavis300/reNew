@@ -9,8 +9,6 @@ function TopicContainer() {
     const mainArt = articles[0]
     const topicArts = articles.slice(1)
 
-    console.log(mainArt)
-
     const topicArticles = topicArts.map(a => <TopicArticles key={a.title} article={a} />)
 
   return (

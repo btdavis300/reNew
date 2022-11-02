@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { setArticle } from '../reducers/articleSlice'
+import { setShowArticle } from '../reducers/showArticleSlice'
 import imagePlaceholder from '../../assets/news-article-placeholder.png'
 
 function TopicArticles({ article }) {
@@ -8,6 +9,7 @@ function TopicArticles({ article }) {
  
   function handleClick(){
     dispatch(setArticle(article))
+    dispatch(setShowArticle(true))
   }
 
   return (

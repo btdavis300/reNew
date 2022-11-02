@@ -1,18 +1,19 @@
 import React from 'react'
 import { useHistory }  from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchTopic } from './reducers/newsTopicSlice';
-import { titleClicked } from './reducers/topicTitleSlice';
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchTopic } from './reducers/newsTopicSlice'
+import { titleClicked } from './reducers/topicTitleSlice'
+import { setShowArticle } from './reducers/showArticleSlice'
 
 function NavBar() {
     const history = useHistory()
     const dispatch = useDispatch()
-    const section = useSelector(state => state.topicTitle.title).toLowerCase()
 
     function handleClick(e){
         const topic = e.target.textContent.toLowerCase()
         dispatch(fetchTopic(topic))
         dispatch(titleClicked(topic.toUpperCase()))
+        dispatch(setShowArticle(false))
         history.push('/topic')
     }
 

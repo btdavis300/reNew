@@ -5,6 +5,7 @@ import popularNewsReducer from "./features/reducers/popularNewsSlice";
 import newsTopicReducer from "./features/reducers/newsTopicSlice";
 import topicTitleReducer from "./features/reducers/topicTitleSlice";
 import articleReducer from "./features/reducers/articleSlice";
+import showArticleReducer from "./features/reducers/showArticleSlice";
 
 const store = configureStore({
     reducer: {
@@ -12,7 +13,8 @@ const store = configureStore({
         popularNews: popularNewsReducer,
         newsTopic: newsTopicReducer,
         topicTitle: topicTitleReducer,
-        article: articleReducer
+        article: articleReducer,
+        showArticle: showArticleReducer
     },
 });
 
