@@ -6,7 +6,6 @@ import TopicContainer from "./features/topics/TopicContainer";
 
 function App() {
   const articles = useSelector(state => state.newsTopic.entities)
-
   return (
     <>
       <BrowserRouter>
@@ -16,8 +15,8 @@ function App() {
             <Route exact path="/">
               <HomeContainer />
             </Route>
-            <Route exact path="/newssection">
-              { articles &&<TopicContainer /> } 
+            <Route exact path=''>
+              { articles.length > 0 && <TopicContainer /> } 
             </Route>
           </Switch>
         </div>
