@@ -16,7 +16,9 @@ function TopicContainer() {
     <div className='flex flex-col items-center p-10'>
       <div className='w-11/12'>
       <div>
+      <a href={mainArt.url} target="_blank">
         <MainArticle article={mainArt}/>
+        </a>
       </div>
       <div className='flex flex-wrap'>
         {topicArticles}
