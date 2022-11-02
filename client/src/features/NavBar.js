@@ -1,7 +1,8 @@
 import React from 'react'
 import { useHistory}  from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchTopic } from './reducers/newsTopicSlice';
+import { titleClicked } from './reducers/topicTitleSlice';
 
 function NavBar() {
     const history = useHistory()
@@ -10,6 +11,7 @@ function NavBar() {
     function handleClick(e){
         const topic = e.target.textContent.toLowerCase()
         dispatch(fetchTopic(topic))
+        dispatch(titleClicked(topic.toUpperCase()))
         history.push("./newssection")
     }
 

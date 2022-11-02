@@ -17,7 +17,7 @@ function App() {
               <HomeContainer />
             </Route>
             <Route exact path="/newssection">
-              { articles &&<TopicContainer /> }
+              { articles &&<TopicContainer /> } 
             </Route>
           </Switch>
         </div>
