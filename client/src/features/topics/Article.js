@@ -20,7 +20,7 @@ function Article() {
                             <div>
                                 <h1 className='text-4xl italic font-semibold text-center'>{article.title}</h1>
                                 <ul className='text-slate-600 text-sm'>
-                                    <li className='pt-3'>{article.byline}</li>
+                                    <li className='pt-3 font-semibold'>{article.byline}</li>
                                     <li className='pb-7'>{newDate}</li>
                                 </ul>
                             </div>
