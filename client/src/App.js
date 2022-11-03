@@ -1,6 +1,6 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
-import NavBar from "./features/NavBar";
+import NavBar from "./features/navigation/NavBar";
 import HomeContainer from "./features/home-page/HomeContainer";
 import TopicContainer from "./features/topics/TopicContainer";
 import Article from "./features/topics/Article";
@@ -12,17 +12,17 @@ function App() {
   return (
     <>
       <BrowserRouter>
-      <NavBar />
+        <NavBar />
         <div className="App">
           <Switch>
             <Route exact path="/">
               <HomeContainer />
             </Route>
             <Route exact path="/topic">
-              { !showArticle ?
-              ( articles.length > 0 && <TopicContainer /> ) 
-              :
-              <Article />
+              {!showArticle ?
+                (articles.length > 0 && <TopicContainer />)
+                :
+                <Article />
               }
             </Route>
           </Switch>
