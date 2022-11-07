@@ -5,6 +5,7 @@ import HomeContainer from "./features/home-page/HomeContainer";
 import TopicContainer from "./features/topics/TopicContainer";
 import Article from "./features/topics/Article";
 import SearchContainer from "./features/search-results/SearchContainer";
+import SearchArticle from "./features/search-results/SearchArticle";
 
 function App() {
   const articles = useSelector(state => state.newsTopic.entities)
@@ -27,7 +28,7 @@ function App() {
               }
             </Route>
             <Route exact path="/results">
-              <SearchContainer />
+              {!showArticle ? <SearchContainer /> : <SearchArticle />}
             </Route>
           </Switch>
         </div>
