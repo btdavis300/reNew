@@ -33,7 +33,7 @@ function HomeContainer() {
                     {homeArticles}
                 </div>
                 <div className='px-2 w-1/3 m-5'>
-                    <h1 className='italic text-lg text-red-500'>Popular News</h1>
+                    <h1 className='italic text-lg text-red-500'>Weekly Popular News</h1>
                     {popularArticles}
                 </div>
             </div>

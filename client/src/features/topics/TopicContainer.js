@@ -20,9 +20,7 @@ function TopicContainer() {
             {title}
           </div>
           <div className='border-b border-black'>
-            <a href={mainArt.url} target="_blank" rel="noreferrer">
-              <MainArticle article={mainArt} />
-            </a>
+            <MainArticle article={mainArt} />
             <h1 className='font-bold italic text-lg'>More News</h1>
           </div>
           <div className='flex flex-wrap'>

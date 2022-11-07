@@ -17,13 +17,15 @@ function Article() {
                 <div className='flex flex-row items-center w-3/4 border-b pb-7'>
                     <div className='px-10'>
                         <div>
-                            <div>
-                                <h1 className='text-4xl italic font-semibold text-center'>{article.title}</h1>
-                                <ul className='text-slate-600 text-sm'>
-                                    <li className='pt-3 font-semibold'>{article.byline}</li>
-                                    <li className='pb-7'>{newDate}</li>
-                                </ul>
-                            </div>
+                            <a href={article.url} target="_blank" rel="noreferrer">
+                                <div>
+                                    <h1 className='text-4xl italic font-semibold text-center hover:text-slate-600 hover:underline'>{article.title}</h1>
+                                    <ul className='text-slate-600 text-sm'>
+                                        <li className='pt-3 font-semibold'>{article.byline}</li>
+                                        <li className='pb-7'>{newDate}</li>
+                                    </ul>
+                                </div>
+                            </a>
                             <div>
                                 <p className='text-slate-600 text-xl'>{article.abstract}</p>
                             </div>
