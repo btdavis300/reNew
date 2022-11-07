@@ -4,6 +4,7 @@ import NavBar from "./features/navigation/NavBar";
 import HomeContainer from "./features/home-page/HomeContainer";
 import TopicContainer from "./features/topics/TopicContainer";
 import Article from "./features/topics/Article";
+import SearchContainer from "./features/search-results/SearchContainer";
 
 function App() {
   const articles = useSelector(state => state.newsTopic.entities)
@@ -24,6 +25,9 @@ function App() {
                 :
                 <Article />
               }
+            </Route>
+            <Route exact path="/results">
+              <SearchContainer />
             </Route>
           </Switch>
         </div>
