@@ -7,6 +7,7 @@ import newsSearchReducer from "./features/reducers/newsSearchSlice";
 import topicTitleReducer from "./features/reducers/topicTitleSlice";
 import articleReducer from "./features/reducers/articleSlice";
 import showArticleReducer from "./features/reducers/showArticleSlice";
+import searchQueryReducer from "./features/reducers/searchQuerySlice";
 
 const store = configureStore({
     reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
         newsSearch: newsSearchReducer,
         topicTitle: topicTitleReducer,
         article: articleReducer,
+        searchQuery: searchQueryReducer,
         showArticle: showArticleReducer
     },
 });

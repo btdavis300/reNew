@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { fetchSearch } from '../reducers/newsSearchSlice'
+import { setSearchQuery } from '../reducers/searchQuerySlice'
 
 function SearchBar() {
     const [query, setQuery] = useState("")
@@ -9,13 +10,16 @@ function SearchBar() {
     const history = useHistory()
 
     function handleSubmit(e) {
+        const form = document.getElementById("search-bar");
         e.preventDefault();
         dispatch(fetchSearch(query))
+        dispatch(setSearchQuery(query))
         history.push('./results')
+        form.reset();
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} id="search-bar">
             <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
             <div className="relative">
                 <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
