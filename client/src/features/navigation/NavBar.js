@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Dropdown } from 'flowbite-react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -6,8 +6,10 @@ import { fetchTopic } from '../reducers/newsTopicSlice'
 import { titleClicked } from '../reducers/topicTitleSlice'
 import { setShowArticle } from '../reducers/showArticleSlice'
 import SearchBar from './SearchBar'
+import Signup from '../login/Signup'
 
 function NavBar() {
+    const [showSignup, setShowSignUp] = useState("hidden")
     const history = useHistory()
     const dispatch = useDispatch()
 
@@ -23,6 +25,10 @@ function NavBar() {
         history.push("./")
     }
 
+    function toSignUp() {
+        setShowSignUp("")
+    }
+
     return (
         <div className='flex justify-center'>
             <div className='flex flex-col items-center py-3 border-b-4 border-double border-black w-11/12'>
@@ -35,8 +41,8 @@ function NavBar() {
                     </div>
                     <div>
                         <Dropdown label="Login">
-                            <Dropdown.Item>
-                                Dashboard
+                            <Dropdown.Item onClick={toSignUp}>
+                                Sign up
                             </Dropdown.Item>
                             <Dropdown.Item>
                                 Settings
@@ -73,6 +79,9 @@ function NavBar() {
                         <li className='p-1 hover:text-slate-600 hover:cursor-pointer hover:bg-slate-100 rounded' onClick={handleClick}>World</li>
                     </ul>
                 </div>
+            </div>
+            <div>
+                <Signup />
             </div>
         </div>
     )
