@@ -43,7 +43,7 @@ function NavBar() {
                         <h1 className='text-3xl font-bold hover:cursor-pointer' onClick={() => history.push('/')}>ReNew</h1>
                     </div>
                     <div>
-                        <Dropdown label="Login">
+                        <Dropdown label="Profile">
                             <Dropdown.Item onClick={onSignUp}>
                                 Sign up
                             </Dropdown.Item>
