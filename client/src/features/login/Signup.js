@@ -7,6 +7,7 @@ import { setShowSignUp } from '../reducers/signupFormSlice'
 
 
 function Signup() {
+    const [errors, setErrors] = useState([]);
     const [formData, setFormData] = useState({
         username: "",
         email: "",
@@ -33,17 +34,16 @@ function Signup() {
             body: JSON.stringify(formData),
         }).then((res) => {
             if (res.ok) {
-                res.json().then((formData) => {
-                    // setCurrentUser(formData);
-                    // setLoggedIn(formData)
+                res.json().then((user) => {
+                    // setCurrentUser(user);
+                    // setLoggedIn(user)
                     // history.push('/profile')
-                    console.log(formData)
+                    console.log(user)
 
                 });
             } else {
                 res.json().then((data) => {
-                    // setErrors(Object.entries(data.errors));
-                    console.log(data.errors)
+                    setErrors(Object.entries(data.errors));
                 });
             }
         });
@@ -66,7 +66,7 @@ function Signup() {
                                     Signup for ReNew
                                 </h3>
                                 <div>
-                                    {/* {errors ? errors.map(e => <div className='text-sm text-red-600'><span className='text-black dark:text-white'>{e[0] + ': '}</span> {e[1]}</div>) : null} */}
+                                    {errors ? errors.map(e => <div className='text-sm text-red-600'><span className='text-black dark:text-white'>{e[0] + ': '}</span> {e[1]}</div>) : null}
                                     <div className="mb-2 block">
                                         <Label htmlFor="username" value="Your username" />
                                     </div>

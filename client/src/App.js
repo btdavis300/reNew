@@ -1,5 +1,9 @@
+import React, { useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
+
+import { useSelector, useDispatch } from "react-redux";
+import { fetchCurrentUser } from "./features/reducers/currentUserSlice";
+
 import NavBar from "./features/navigation/NavBar";
 import HomeContainer from "./features/home-page/HomeContainer";
 import TopicContainer from "./features/topics/TopicContainer";
@@ -10,6 +14,12 @@ import SearchArticle from "./features/search-results/SearchArticle";
 function App() {
   const articles = useSelector(state => state.newsTopic.entities)
   const showArticle = useSelector(state => state.showArticle.set)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, [])
 
   return (
     <>

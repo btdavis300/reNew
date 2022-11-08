@@ -9,6 +9,7 @@ import articleReducer from "./features/reducers/articleSlice";
 import showArticleReducer from "./features/reducers/showArticleSlice";
 import searchQueryReducer from "./features/reducers/searchQuerySlice";
 import signupFormReducer from "./features/reducers/signupFormSlice";
+import currentUserReducer from "./features/reducers/currentUserSlice";
 
 const store = configureStore({
     reducer: {
@@ -21,6 +22,7 @@ const store = configureStore({
         searchQuery: searchQueryReducer,
         showArticle: showArticleReducer,
         showSignUp: signupFormReducer,
+        currentUser: currentUserReducer,
     },
 });
 
