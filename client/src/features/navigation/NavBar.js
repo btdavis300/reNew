@@ -1,15 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Dropdown } from 'flowbite-react'
+
 import { useHistory } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+
 import { fetchTopic } from '../reducers/newsTopicSlice'
 import { titleClicked } from '../reducers/topicTitleSlice'
 import { setShowArticle } from '../reducers/showArticleSlice'
+import { setShowSignUp } from '../reducers/signupFormSlice'
+
 import SearchBar from './SearchBar'
 import Signup from '../login/Signup'
 
 function NavBar() {
-    const [showSignup, setShowSignUp] = useState("hidden")
     const history = useHistory()
     const dispatch = useDispatch()
 
@@ -25,8 +28,8 @@ function NavBar() {
         history.push("./")
     }
 
-    function toSignUp() {
-        setShowSignUp("")
+    function onSignUp() {
+        dispatch(setShowSignUp(true))
     }
 
     return (
@@ -41,7 +44,7 @@ function NavBar() {
                     </div>
                     <div>
                         <Dropdown label="Login">
-                            <Dropdown.Item onClick={toSignUp}>
+                            <Dropdown.Item onClick={onSignUp}>
                                 Sign up
                             </Dropdown.Item>
                             <Dropdown.Item>

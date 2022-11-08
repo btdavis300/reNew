@@ -1,28 +1,29 @@
-import React, { useState } from 'react'
+import React from 'react'
+
 import { Button, Modal, Label, TextInput, Checkbox } from 'flowbite-react'
 
-function Signup() {
-    const [showSignUp, setShowSignUp] = useState(false)
+import { useDispatch, useSelector } from 'react-redux'
+import { setShowSignUp } from '../reducers/signupFormSlice'
 
-    function onSignUp() {
-        setShowSignUp(true)
-    }
+
+function Signup() {
+    const dispatch = useDispatch()
+    const showSignUp = useSelector(state => state.showSignUp.set)
 
     return (
         <div>
-            <button onClick={onSignUp}>Click me</button>
             <React.Fragment>
                 <Modal
                     show={showSignUp}
                     size="md"
                     popup={true}
-                    onClose={() => setShowSignUp(false)}
+                    onClose={() => dispatch(setShowSignUp(false))}
                 >
                     <Modal.Header />
                     <Modal.Body>
                         <div className="space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8">
                             <h3 className="text-xl font-medium text-gray-900 dark:text-white">
-                                Sign in to our platform
+                                Sign up to ReNew
                             </h3>
                             <div>
                                 <div className="mb-2 block">
