@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
 import imagePlaceholder from '../../assets/news-article-placeholder.png'
 import linkedInIcon from '../../assets/linkedin.jpeg'
 import facebookIcon from '../../assets/facebook.jpeg'
@@ -30,14 +31,14 @@ function Article() {
         <div className='flex flex-col items-center'>
             <div className='flex flex-col items-center border-b  w-3/4  pt-20'>
                 <div className='flex flex-row pb-7'>
-                    <div className='w-1/3'>
-                        <img src={facebookIcon} width="28px" height="28px" onClick={() => window.open(fbShareLink, 'targetWindow', 'width=500, height=500')} />
-                        <img src={linkedInIcon} width="28px" height="28px" onClick={() => window.open(linkedInLink, 'targetWindow', 'width=500, height=500')} />
-                        <img src={twitterIcon} width="28px" height="28px" onClick={() => window.open(twitterLink, 'targetWindow', 'width=500, height=500')} />
-                        <img src={redditIcon} width="28px" height="28px" onClick={() => window.open(redditLink, 'targetWindow', 'width=500, height=500')} />
-                        <img src={googleIcon} width="28px" height="28px" onClick={() => window.open(googleLink, 'targetWindow', 'width=500, height=500')} />
-                        <img src={bloggerIcon} width="28px" height="28px" onClick={() => window.open(bloggerLink, 'targetWindow', 'width=500, height=500')} />
-                        <img src={evernoteIcon} width="28px" height="28px" onClick={() => window.open(evernoteLink, 'targetWindow', 'width=500, height=500')} />
+                    <div className='w-1/5'>
+                        <img src={facebookIcon} width="28px" height="28px" className='hover:cursor-pointer my-1' onClick={() => window.open(fbShareLink, 'targetWindow', 'width=500, height=500')} />
+                        <img src={linkedInIcon} width="28px" height="28px" className='hover:cursor-pointer my-1' onClick={() => window.open(linkedInLink, 'targetWindow', 'width=500, height=500')} />
+                        <img src={twitterIcon} width="28px" height="28px" className='hover:cursor-pointer my-1' onClick={() => window.open(twitterLink, 'targetWindow', 'width=500, height=500')} />
+                        <img src={redditIcon} width="28px" height="28px" className='hover:cursor-pointer my-1' onClick={() => window.open(redditLink, 'targetWindow', 'width=500, height=500')} />
+                        <img src={googleIcon} width="28px" height="28px" className='hover:cursor-pointer my-1' onClick={() => window.open(googleLink, 'targetWindow', 'width=500, height=500')} />
+                        <img src={bloggerIcon} width="28px" height="28px" className='hover:cursor-pointer my-1' onClick={() => window.open(bloggerLink, 'targetWindow', 'width=500, height=500')} />
+                        <img src={evernoteIcon} width="28px" height="28px" className='hover:cursor-pointer my-1' onClick={() => window.open(evernoteLink, 'targetWindow', 'width=500, height=500')} />
                     </div>
                     <div className='pr-10 flex items-center'>
                         <div>

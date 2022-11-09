@@ -2,7 +2,15 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setShowArticle } from '../reducers/showArticleSlice'
 import { setArticle } from '../reducers/articleSlice'
+
 import imagePlaceholder from '../../assets/news-article-placeholder.png'
+import linkedInIcon from '../../assets/linkedin.jpeg'
+import facebookIcon from '../../assets/facebook.jpeg'
+import redditIcon from '../../assets/reddit.jpeg'
+import twitterIcon from '../../assets/twitter.jpeg'
+import bloggerIcon from '../../assets/blogger.jpeg'
+import googleIcon from '../../assets/google.jpeg'
+import evernoteIcon from '../../assets/evernote.jpeg'
 
 function SearchArticle() {
     const dispatch = useDispatch()
@@ -14,6 +22,14 @@ function SearchArticle() {
 
     const readTime = Math.round(article.word_count / 200)
 
+    const fbShareLink = `https://www.facebook.com/sharer.php?u=${article.web_url}`
+    const linkedInLink = `https://www.linkedin.com/sharing/share-offsite/?url=${article.web_url}`
+    const redditLink = `https://reddit.com/submit?url=${article.web_url}&title=${article.headline.main}`
+    const twitterLink = `https://twitter.com/intent/tweet?url=${article.web_url}&text=${article.headline.main}`
+    const bloggerLink = `https://www.blogger.com/blog-this.g?u=${article.web_url}&n=${article.headline.main}&t=${article.abstract}`
+    const googleLink = `https://www.google.com/bookmarks/mark?op=edit&bkmk=${article.web_url}&title=${article.headline.main}&annotation=${article.abstract}`
+    const evernoteLink = `https://www.evernote.com/clip.action?url=${article.web_url}&title=${article.headline.main}`
+
     function handleClick() {
         dispatch(setArticle([]))
         dispatch(setShowArticle(false))
@@ -24,11 +40,20 @@ function SearchArticle() {
         <div>
             <div className='flex justify-center pt-10'>
                 <div className='flex flex-row items-center w-3/4 border-b pb-7'>
+                    <div className='w-1/5'>
+                        <img src={facebookIcon} width="28px" height="28px" className='hover:cursor-pointer my-1' onClick={() => window.open(fbShareLink, 'targetWindow', 'width=500, height=500')} />
+                        <img src={linkedInIcon} width="28px" height="28px" className='hover:cursor-pointer my-1' onClick={() => window.open(linkedInLink, 'targetWindow', 'width=500, height=500')} />
+                        <img src={twitterIcon} width="28px" height="28px" className='hover:cursor-pointer my-1' onClick={() => window.open(twitterLink, 'targetWindow', 'width=500, height=500')} />
+                        <img src={redditIcon} width="28px" height="28px" className='hover:cursor-pointer my-1' onClick={() => window.open(redditLink, 'targetWindow', 'width=500, height=500')} />
+                        <img src={googleIcon} width="28px" height="28px" className='hover:cursor-pointer my-1' onClick={() => window.open(googleLink, 'targetWindow', 'width=500, height=500')} />
+                        <img src={bloggerIcon} width="28px" height="28px" className='hover:cursor-pointer my-1' onClick={() => window.open(bloggerLink, 'targetWindow', 'width=500, height=500')} />
+                        <img src={evernoteIcon} width="28px" height="28px" className='hover:cursor-pointer my-1' onClick={() => window.open(evernoteLink, 'targetWindow', 'width=500, height=500')} />
+                    </div>
                     <div>
                         <div className='pb-10'>
                             <button onClick={handleClick} type="button" className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800">Back to Results</button>
                         </div>
-                        <div className='w-2/3'>
+                        <div className='w-3/4'>
                             <a href={article.web_url} target="_blank" rel="noreferrer">
                                 <div>
                                     <h1 className='text-4xl italic font-semibold text-center hover:text-slate-600 hover:underline hover:cursor-pointer'>{article.headline.main}</h1>
@@ -45,7 +70,7 @@ function SearchArticle() {
                         </div>
                     </div>
                     <div>
-                        <img src={article.multimedia ? `https://static01.nyt.com/${article.multimedia[0].url}` : imagePlaceholder} alt="front page article" />
+                        <img src={article.multimedia.length > 0 ? `https://static01.nyt.com/${article.multimedia[1].url}` : imagePlaceholder} alt="front page article" />
                     </div>
                 </div>
             </div>

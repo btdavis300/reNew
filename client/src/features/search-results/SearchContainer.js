@@ -11,14 +11,13 @@ function SearchContainer() {
 
     return (
         <div className='flex flex-col items-center'>
-            <div className='w-1/2 pt-7'>
+            <div className='w-3/4 pt-7'>
                 <h1 className='text-sm text-slate-600 pb-1'>Showing {results.length} results for:</h1>
                 <h1 className='text-3xl text-black font-bold'>{query}</h1>
             </div>
             <div className='flex justify-center'>
-                <div className='flex flex-col w-1/2'>
+                <div className='flex flex-col w-2/3'>
                     {searchArticle}
-                    <h1>hi</h1>
                 </div>
             </div>
         </div>

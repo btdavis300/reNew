@@ -20,7 +20,7 @@ function SearchArticle({ article }) {
 
     return (
         <div onClick={handleClick} className='flex flex-row justify-between items-center px-10 py-10 border-b hover:cursor-pointer'>
-            <div className='flex flex-col pr-24'>
+            <div className='flex flex-col pr-24 w-3/4'>
                 <h4 className='text-md pt-5'>{article.section_name}</h4>
                 <h1 className='text-xl italic font-semi-bold hover:underline'>{article.headline.main}</h1>
                 <p>{article.abstract}</p>
@@ -29,7 +29,7 @@ function SearchArticle({ article }) {
                 <h5 className='text-slate-600 text-xs'>{readTime} min read</h5>
             </div>
             <div>
-                <img src={article.multimedia ? `https://static01.nyt.com/${article.multimedia[2].url}` : imagePlaceholder} alt="results article" />
+                <img src={article.multimedia.length > 0 ? `https://static01.nyt.com/${article.multimedia[1].url}` : imagePlaceholder} alt="results article" />
             </div>
         </div>
     )
