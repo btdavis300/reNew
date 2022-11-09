@@ -1,19 +1,22 @@
 class UsersController < ApplicationController
 
     def create
-        user = User.create!(user_params)
-        if user.valid?
-            session[:user_id] = user.id 
-            render json: user, status: :created
-        else
+        user = User.create(user_params)
+          if user.valid?
+            session[:user_id] = user.id
+            render json: user, status: :ok
+          else
             render json: user.errors.full_messages, status: :unprocessable_entity
-        end
-    end
+          end
+      end
 
     def show
-        user = User.find_by(id: params[:id])
-        render json: user, status: :accepted
-    end
+        if current_user
+          render json: current_user, status: :ok
+        else
+          render json: "No current session stored", status: :unauthorized
+        end
+      end
 
 private
 

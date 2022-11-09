@@ -1,9 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchCurrentUser = createAsyncThunk("currentUser/fetchCurrentUser", () => {
-    return fetch("http://localhost:3000/logged_in")
+    return fetch(`http://localhost:3000/logged_in`)
         .then((response) => response.json())
-        .then((user) => user);
 });
 
 

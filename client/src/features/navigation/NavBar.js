@@ -11,6 +11,7 @@ import { setShowSignUp } from '../reducers/signupFormSlice'
 
 import SearchBar from './SearchBar'
 import Signup from '../login/Signup'
+import Login from '../login/Login'
 
 function NavBar() {
     const history = useHistory()
@@ -72,7 +73,6 @@ function NavBar() {
                         <li className='p-1 hover:text-slate-600 hover:cursor-pointer hover:bg-slate-100 rounded' onClick={handleClick}>Movies</li>
                         <li className='p-1 hover:text-slate-600 hover:cursor-pointer hover:bg-slate-100 rounded' onClick={handleClick}>Opinion</li>
                         <li className='p-1 hover:text-slate-600 hover:cursor-pointer hover:bg-slate-100 rounded' onClick={handleClick}>Politics</li>
-                        {/* <li className='p-1 hover:text-slate-600 hover:cursor-pointer hover:bg-slate-100 rounded' onClick={handleClick}>Real Estate</li> */}
                         <li className='p-1 hover:text-slate-600 hover:cursor-pointer hover:bg-slate-100 rounded' onClick={handleClick}>Science</li>
                         <li className='p-1 hover:text-slate-600 hover:cursor-pointer hover:bg-slate-100 rounded' onClick={handleClick}>Sports</li>
                         <li className='p-1 hover:text-slate-600 hover:cursor-pointer hover:bg-slate-100 rounded' onClick={handleClick}>Technology</li>
@@ -85,6 +85,7 @@ function NavBar() {
             </div>
             <div>
                 <Signup />
+                {/* <Login /> */}
             </div>
         </div>
     )

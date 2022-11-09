@@ -1,6 +1,13 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import imagePlaceholder from '../../assets/news-article-placeholder.png'
+import linkedInIcon from '../../assets/linkedin.jpeg'
+import facebookIcon from '../../assets/facebook.jpeg'
+import redditIcon from '../../assets/reddit.jpeg'
+import twitterIcon from '../../assets/twitter.jpeg'
+import bloggerIcon from '../../assets/blogger.jpeg'
+import googleIcon from '../../assets/google.jpeg'
+import evernoteIcon from '../../assets/evernote.jpeg'
 
 function Article() {
     const article = useSelector(state => state.article.entity)
@@ -9,13 +16,30 @@ function Article() {
     const date = pubdate.indexOf('T')
     const newDate = pubdate.slice(0, date)
 
+    const fbShareLink = `https://www.facebook.com/sharer.php?u=${article.url}`
+    const linkedInLink = `https://www.linkedin.com/sharing/share-offsite/?url=${article.url}`
+    const redditLink = `https://reddit.com/submit?url=${article.url}&title=${article.title}`
+    const twitterLink = `https://twitter.com/intent/tweet?url=${article.url}&text=${article.title}&hashtags=${article.per_facet[0]}`
+    const bloggerLink = `https://www.blogger.com/blog-this.g?u=${article.url}&n=${article.title}&t=${article.abstract}`
+    const googleLink = `https://www.google.com/bookmarks/mark?op=edit&bkmk=${article.url}&title=${article.title}&annotation=${article.abstract}&labels=${article.per_facet[0]}`
+    const evernoteLink = `https://www.evernote.com/clip.action?url=${article.url}&title=${article.title}`
+
 
 
     return (
-        <div>
-            <div className='flex justify-center pt-20'>
-                <div className='flex flex-row items-center w-3/4 border-b pb-7'>
-                    <div className='px-10'>
+        <div className='flex flex-col items-center'>
+            <div className='flex flex-col items-center border-b  w-3/4  pt-20'>
+                <div className='flex flex-row pb-7'>
+                    <div className='w-1/3'>
+                        <img src={facebookIcon} width="28px" height="28px" onClick={() => window.open(fbShareLink, 'targetWindow', 'width=500, height=500')} />
+                        <img src={linkedInIcon} width="28px" height="28px" onClick={() => window.open(linkedInLink, 'targetWindow', 'width=500, height=500')} />
+                        <img src={twitterIcon} width="28px" height="28px" onClick={() => window.open(twitterLink, 'targetWindow', 'width=500, height=500')} />
+                        <img src={redditIcon} width="28px" height="28px" onClick={() => window.open(redditLink, 'targetWindow', 'width=500, height=500')} />
+                        <img src={googleIcon} width="28px" height="28px" onClick={() => window.open(googleLink, 'targetWindow', 'width=500, height=500')} />
+                        <img src={bloggerIcon} width="28px" height="28px" onClick={() => window.open(bloggerLink, 'targetWindow', 'width=500, height=500')} />
+                        <img src={evernoteIcon} width="28px" height="28px" onClick={() => window.open(evernoteLink, 'targetWindow', 'width=500, height=500')} />
+                    </div>
+                    <div className='pr-10 flex items-center'>
                         <div>
                             <a href={article.url} target="_blank" rel="noreferrer">
                                 <div>
