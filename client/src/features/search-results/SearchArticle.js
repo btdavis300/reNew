@@ -34,7 +34,7 @@ function SearchArticle() {
     const evernoteLink = `https://www.evernote.com/clip.action?url=${article.web_url}&title=${article.headline.main}`
 
     function handleClick() {
-        dispatch(setArticle([]))
+        dispatch(setArticle({}))
         dispatch(setShowArticle(false))
 
     }

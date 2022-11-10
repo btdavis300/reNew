@@ -6,8 +6,13 @@ class ArchiveArticlesController < ApplicationController
     end
 
     def user_archives
-        articles = ArchiveArticle.where(user_id: params[:user_id])
+        articles = ArchiveArticle.where(user_id: params[:user_id]).reverse
         render json: articles, status: :ok
+    end
+
+    def destroy
+        article = ArchiveArticle.find(params[:id])
+        article.destroy
     end
 
 private

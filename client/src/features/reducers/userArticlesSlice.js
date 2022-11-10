@@ -13,7 +13,10 @@ const userArticlesSlice = createSlice({
     },
     reducers: {
         savedArticle(state, action) {
-            state.entities = [...state.entities, action.payload];
+            state.entities = [action.payload, ...state.entities];
+        },
+        removeArticle(state, action) {
+            state.entities = state.entities.filter(article => article.id !== action.payload.id);
         }
     },
     extraReducers: {
@@ -23,6 +26,6 @@ const userArticlesSlice = createSlice({
     }
 })
 
-export const { savedArticle } = userArticlesSlice.actions;
+export const { savedArticle, removeArticle } = userArticlesSlice.actions;
 
 export default userArticlesSlice.reducer;

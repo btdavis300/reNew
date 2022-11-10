@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { savedArticle } from '../reducers/userArticlesSlice'
+import { removeArticle } from '../reducers/userArticlesSlice'
+import { setShowArticle } from '../reducers/showArticleSlice'
+import { setArticle } from '../reducers/articleSlice'
+import { setAlert } from '../reducers/alertSlice'
 
 import imagePlaceholder from '../../assets/news-article-placeholder.png'
 import linkedInIcon from '../../assets/linkedin.jpeg'
@@ -32,32 +35,22 @@ function ArchiveArticle() {
     const evernoteLink = `https://www.evernote.com/clip.action?url=${article.url}&title=${article.title}`
 
 
-    function handleArticle() {
-        const archivedArticle = {
-            user_id: user.id,
-            title: article.title,
-            author: article.author,
-            published_date: article.published_date,
-            abstract: article.abstract,
-            url: article.url,
-            image: article.image
-        }
-        fetch('/archive_articles', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(archivedArticle),
-        })
-            .then(r => r.json())
-            .then(data => console.log(data))
-        setArchived(true)
-        dispatch(savedArticle(archivedArticle))
+
+    function handleClick() {
+        dispatch(setArticle({}))
+        dispatch(setShowArticle(false))
     }
 
-    function unSaveArticle() {
-        //add delete request
-        setArchived(false)
+    function removeArchiveArticle() {
+        fetch(`/archive_articles/${article.id}`, { method: "DELETE" })
+            .then(res => {
+                if (res.ok) {
+                    dispatch(removeArticle(article))
+                    dispatch(setShowArticle(false))
+                    dispatch(setAlert(""))
+                    setTimeout(function () { dispatch(setAlert("hidden")) }, 5000)
+                }
+            })
     }
 
     return (
@@ -87,21 +80,16 @@ function ArchiveArticle() {
                             <div>
                                 <p className='text-slate-600 text-xl'>{article.abstract}</p>
                             </div>
+                            <div className='pt-10'>
+                                <button onClick={handleClick} type="button" className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-3 py-2 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800">Back to Archive</button>
+                            </div>
                         </div>
                     </div>
                     <div className='flex flex-col'>
-                        {!archived ?
-                            <div className='flex justify-end items-center pb-1'>
-                                <h3 className='text-sm text-slate-600'>Save to Archives</h3>
-                                <svg className="w-6 h-6 text-red-600 hover:cursor-pointer" onClick={handleArticle} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
-                            </div>
-                            :
-
-                            <div className='flex justify-end items-center pb-1'>
-                                <h3 className='text-sm text-slate-600'>Saved!</h3>
-                                <svg className="w-6 h-6 text-red-600 hover:cursor-pointer" onClick={unSaveArticle} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd"></path></svg>
-                            </div>
-                        }
+                        <div className='flex justify-end items-center pb-1'>
+                            <h3 className='text-sm text-slate-600'>Remove from Archives</h3>
+                            <svg className="w-6 h-6 text-red-600 hover:cursor-pointer" onClick={removeArchiveArticle} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd"></path></svg>
+                        </div>
                         <img src={article.image ? article.image : imagePlaceholder} alt="front page article" />
                     </div>
                 </div>

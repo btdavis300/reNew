@@ -11,6 +11,7 @@ import searchQueryReducer from "./features/reducers/searchQuerySlice";
 import signupFormReducer from "./features/reducers/signupFormSlice";
 import userReducer from "./features/reducers/userSlice";
 import userArticlesReducer from "./features/reducers/userArticlesSlice";
+import alertReducer from "./features/reducers/alertSlice";
 
 
 const store = configureStore({
@@ -26,6 +27,7 @@ const store = configureStore({
         showSignUp: signupFormReducer,
         currentUser: userReducer,
         userArticles: userArticlesReducer,
+        alert: alertReducer,
     },
 });
 
