@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import jwt_decode from 'jwt-decode'
 
 import { fetchTopic } from '../reducers/newsTopicSlice'
+import { fetchUserArticles } from '../reducers/userArticlesSlice'
 import { titleClicked } from '../reducers/topicTitleSlice'
 import { setShowArticle } from '../reducers/showArticleSlice'
 import { setCurrentUser } from '../reducers/userSlice'
@@ -43,7 +44,7 @@ function NavBar() {
             first_name: currentUser.given_name,
             last_name: currentUser.family_name,
             image: currentUser.picture,
-            email: currentUser.email
+            email: currentUser.email,
         }
         fetch('/signup', {
             method: "POST",
@@ -53,6 +54,8 @@ function NavBar() {
             body: JSON.stringify(newUser),
         })
         dispatch(setCurrentUser(newUser))
+        dispatch(fetchUserArticles(newUser.id))
+        console.log(newUser.id)
 
     }
 

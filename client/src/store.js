@@ -10,6 +10,7 @@ import showArticleReducer from "./features/reducers/showArticleSlice";
 import searchQueryReducer from "./features/reducers/searchQuerySlice";
 import signupFormReducer from "./features/reducers/signupFormSlice";
 import userReducer from "./features/reducers/userSlice";
+import userArticlesReducer from "./features/reducers/userArticlesSlice";
 
 
 const store = configureStore({
@@ -24,6 +25,7 @@ const store = configureStore({
         showArticle: showArticleReducer,
         showSignUp: signupFormReducer,
         currentUser: userReducer,
+        userArticles: userArticlesReducer,
     },
 });
 
