@@ -15,6 +15,7 @@ function Article() {
 
     const article = useSelector(state => state.article.entity)
     const user = useSelector(state => state.currentUser.set)
+    console.log(user.id)
 
     const pubdate = article.published_date
     const date = pubdate.indexOf('T')

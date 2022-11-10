@@ -1,7 +1,7 @@
 class ArchiveArticlesController < ApplicationController
 
     def create
-        article = ArchiveArticle.create(article_params)
+        article = ArchiveArticle.create!(article_params)
         render json: article, status: :created  
     end
 

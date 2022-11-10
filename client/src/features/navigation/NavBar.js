@@ -38,7 +38,7 @@ function NavBar() {
 
     function handleSignIn(currentUser) {
         const newUser = {
-            id: currentUser.iat,
+            id: currentUser.sub.substr(17),
             username: currentUser.name,
             first_name: currentUser.given_name,
             last_name: currentUser.family_name,
