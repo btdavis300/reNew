@@ -119,15 +119,15 @@ function NavBar() {
                             <button id="dropdownDefault" onClick={handleDropdown} className="text-black bg-slate-300 hover:bg-slate-400 focus:ring-4 focus:outline-none focus:ring-slate-300 font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800" type="button">{dropDownIcon} {user.username} <svg className="ml-2 w-4 h-4 text-black" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></button>
 
                             <div id="dropdown" className={dropdown}>
-                                <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
-                                    <li>
-                                        <a href="#" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
+                                <ul className="py-1 text-center text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
+                                    <li className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                        Profile
                                     </li>
-                                    <li>
-                                        <a href="#" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Archive</a>
+                                    <li onClick={() => history.push("./user/archive")} className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                        Archive
                                     </li>
-                                    <li>
-                                        <a href="#" onClick={handleSignOut} className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
+                                    <li onClick={handleSignOut} className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                        Sign out
                                     </li>
                                 </ul>
                             </div>
@@ -157,7 +157,7 @@ function NavBar() {
                     </ul>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

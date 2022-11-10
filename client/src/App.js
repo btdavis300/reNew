@@ -9,10 +9,13 @@ import TopicContainer from "./features/topics/TopicContainer";
 import Article from "./features/topics/Article";
 import SearchContainer from "./features/search-results/SearchContainer";
 import SearchArticle from "./features/search-results/SearchArticle";
+import ArchiveContainer from "./features/archive/ArchiveContainer";
+import ArchiveArticle from "./features/archive/ArchiveArticle";
 
 function App() {
   const articles = useSelector(state => state.newsTopic.entities)
   const showArticle = useSelector(state => state.showArticle.set)
+  const user = useSelector(state => state.currentUser.set)
 
 
   return (
@@ -33,6 +36,9 @@ function App() {
             </Route>
             <Route exact path="/results">
               {!showArticle ? <SearchContainer /> : <SearchArticle />}
+            </Route>
+            <Route exact path="/user/archive">
+              {!showArticle ? <ArchiveContainer /> : <ArchiveArticle />}
             </Route>
           </Switch>
         </div>
