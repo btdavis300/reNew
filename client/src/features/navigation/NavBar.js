@@ -1,35 +1,39 @@
 import React, { useEffect, useState } from 'react'
 
 import { useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import jwt_decode from 'jwt-decode'
 
 import { fetchTopic } from '../reducers/newsTopicSlice'
 import { titleClicked } from '../reducers/topicTitleSlice'
 import { setShowArticle } from '../reducers/showArticleSlice'
+import { setCurrentUser } from '../reducers/userSlice'
 
 import SearchBar from './SearchBar'
 
 function NavBar() {
-    const [user, setUser] = useState({})
+    // const [user, setUser] = useState({})
     const [dropdown, setDropdown] = useState("hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700")
     const [showDrop, setShowDrop] = useState(false)
 
     const google = window.google;
     const history = useHistory()
-    const dispatch = useDispatch()
 
-    const dropDownIcon = <img src={user.picture} className="p-1 w-7 h-7 rounded-full hover:cursor-pointer active:opacity-80 active:ring-gray-400" alt='' />
+    const dispatch = useDispatch()
+    const user = useSelector(state => state.currentUser.set)
+
+    const dropDownIcon = <img src={user.image} className="p-1 w-7 h-7 rounded-full hover:cursor-pointer active:opacity-80 active:ring-gray-400" alt='' />
 
 
     function handleCallbackResponse(response) {
         const currentUser = jwt_decode(response.credential);
         console.log(currentUser)
-        setUser(currentUser)
+        // setUser(currentUser)
         document.getElementById("signInDiv").hidden = true;
         document.getElementById("profileDropdown").style.display = "block";
         handleSignIn(currentUser)
+        //dispatch currentUser in handleSignIn function
     }
 
     function handleSignIn(currentUser) {
@@ -48,8 +52,8 @@ function NavBar() {
             },
             body: JSON.stringify(newUser),
         })
-            .then(r => r.json())
-            .then(data => console.log(data))
+        dispatch(setCurrentUser(newUser))
+
     }
 
 
@@ -89,7 +93,7 @@ function NavBar() {
     }
 
     function handleSignOut() {
-        setUser({})
+        dispatch(setCurrentUser({}))
         document.getElementById("signInDiv").hidden = false;
         document.getElementById("profileDropdown").style.display = "none";
     }
@@ -109,7 +113,7 @@ function NavBar() {
                     </div>
                     {user &&
                         <div id="profileDropdown" style={{ display: "none" }}>
-                            <button id="dropdownDefault" onClick={handleDropdown} className="text-black bg-slate-300 hover:bg-slate-400 focus:ring-4 focus:outline-none focus:ring-slate-300 font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800" type="button">{dropDownIcon} {user.name} <svg className="ml-2 w-4 h-4 text-black" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></button>
+                            <button id="dropdownDefault" onClick={handleDropdown} className="text-black bg-slate-300 hover:bg-slate-400 focus:ring-4 focus:outline-none focus:ring-slate-300 font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800" type="button">{dropDownIcon} {user.username} <svg className="ml-2 w-4 h-4 text-black" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></button>
 
                             <div id="dropdown" className={dropdown}>
                                 <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">

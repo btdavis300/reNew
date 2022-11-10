@@ -14,6 +14,7 @@ function Article() {
     const [archived, setArchived] = useState(false)
 
     const article = useSelector(state => state.article.entity)
+    const user = useSelector(state => state.currentUser.set)
 
     const pubdate = article.published_date
     const date = pubdate.indexOf('T')
@@ -30,7 +31,7 @@ function Article() {
 
     function handleArticle() {
         const archivedArticle = {
-            user_id: 1668110035,
+            user_id: user.id,
             title: article.title,
             author: article.byline,
             published_date: newDate,

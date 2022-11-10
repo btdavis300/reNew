@@ -17,6 +17,7 @@ function SearchArticle() {
 
     const dispatch = useDispatch()
     const article = useSelector(state => state.article.entity)
+    const user = useSelector(state => state.currentUser.set)
 
     const pubdate = article.pub_date
     const date = pubdate.indexOf('T')
@@ -40,7 +41,7 @@ function SearchArticle() {
 
     function handleArticle() {
         const archivedArticle = {
-            user_id: 1668110035,
+            user_id: user.id,
             title: article.headline.main,
             author: article.byline.original,
             published_date: newDate,
