@@ -5,6 +5,8 @@ import { useDispatch } from 'react-redux'
 
 import jwt_decode from 'jwt-decode'
 
+import { Dropdown } from 'flowbite-react'
+
 import { fetchTopic } from '../reducers/newsTopicSlice'
 import { titleClicked } from '../reducers/topicTitleSlice'
 import { setShowArticle } from '../reducers/showArticleSlice'
@@ -16,6 +18,14 @@ import Login from '../login/Login'
 
 function NavBar() {
     const [user, setUser] = useState({})
+    const [dropdown, setDropdown] = useState("hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700")
+    const [showDrop, setShowDrop] = useState(false)
+
+    const google = window.google;
+    const history = useHistory()
+    const dispatch = useDispatch()
+
+    const dropDownIcon = <img src={user.picture} className="p-1 w-10 h-10 rounded-lg hover:cursor-pointer active:opacity-90 active:ring-gray-400" alt='' />
 
 
     function handleCallbackResponse(response) {
@@ -24,6 +34,7 @@ function NavBar() {
         console.log(currentUser)
         setUser(currentUser)
         document.getElementById("signInDiv").hidden = true;
+        document.getElementById("profileDropdown").style.display = "block";
     }
 
     useEffect(() => {
@@ -39,8 +50,14 @@ function NavBar() {
     }, [])
 
 
-    const history = useHistory()
-    const dispatch = useDispatch()
+    function handleDropdown() {
+        setShowDrop(!showDrop)
+        if (!showDrop) {
+            setDropdown("z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 absolute")
+        } else {
+            setDropdown("hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700")
+        }
+    }
 
     function handleClick(e) {
         const topic = e.target.textContent.toLowerCase()
@@ -54,9 +71,12 @@ function NavBar() {
         history.push("./")
     }
 
-    function onSignUp() {
-        dispatch(setShowSignUp(true))
+    function handleSignOut() {
+        setUser({})
+        document.getElementById("signInDiv").hidden = false;
+        document.getElementById("profileDropdown").style.display = "none";
     }
+
 
     return (
         <div className='flex justify-center'>
@@ -70,14 +90,28 @@ function NavBar() {
                     </div>
                     <div id="signInDiv">
                     </div>
-                    <div>
-                        {user &&
-                            <div>
-                                <img src={user.picture} alt='' />
-                                <h3>{user.name}</h3>
+                    {user &&
+                        <div id="profileDropdown" style={{ display: "none" }}>
+                            <button id="dropdownDefault" onClick={handleDropdown} className="text-black bg-slate-300 hover:bg-slate-400 focus:ring-4 focus:outline-none focus:ring-slate-300 font-medium rounded-lg text-sm px-4 py-1 text-center inline-flex items-center dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800" type="button">{dropDownIcon} {user.name} <svg className="ml-2 w-4 h-4 text-black" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></button>
+
+                            <div id="dropdown" className={dropdown}>
+                                <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
+                                    <li>
+                                        <a href="#" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onClick={handleSignOut} className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
+                                    </li>
+                                </ul>
                             </div>
-                        }
-                    </div>
+                        </div>
+                    }
                 </div>
                 <div>
                     <ul className='flex flex-row'>
