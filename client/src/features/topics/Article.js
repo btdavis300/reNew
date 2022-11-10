@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import imagePlaceholder from '../../assets/news-article-placeholder.png'
@@ -32,13 +32,13 @@ function Article() {
             <div className='flex flex-col items-center border-b  w-3/4  pt-20'>
                 <div className='flex flex-row pb-7'>
                     <div className='w-1/5'>
-                        <img src={facebookIcon} width="28px" height="28px" className='hover:cursor-pointer my-1' onClick={() => window.open(fbShareLink, 'targetWindow', 'width=500, height=500')} />
-                        <img src={linkedInIcon} width="28px" height="28px" className='hover:cursor-pointer my-1' onClick={() => window.open(linkedInLink, 'targetWindow', 'width=500, height=500')} />
-                        <img src={twitterIcon} width="28px" height="28px" className='hover:cursor-pointer my-1' onClick={() => window.open(twitterLink, 'targetWindow', 'width=500, height=500')} />
-                        <img src={redditIcon} width="28px" height="28px" className='hover:cursor-pointer my-1' onClick={() => window.open(redditLink, 'targetWindow', 'width=500, height=500')} />
-                        <img src={googleIcon} width="28px" height="28px" className='hover:cursor-pointer my-1' onClick={() => window.open(googleLink, 'targetWindow', 'width=500, height=500')} />
-                        <img src={bloggerIcon} width="28px" height="28px" className='hover:cursor-pointer my-1' onClick={() => window.open(bloggerLink, 'targetWindow', 'width=500, height=500')} />
-                        <img src={evernoteIcon} width="28px" height="28px" className='hover:cursor-pointer my-1' onClick={() => window.open(evernoteLink, 'targetWindow', 'width=500, height=500')} />
+                        <img src={facebookIcon} width="28px" height="28px" className='hover:cursor-pointer hover:opacity-70 my-1' onClick={() => window.open(fbShareLink, 'targetWindow', 'width=500, height=500')} />
+                        <img src={linkedInIcon} width="28px" height="28px" className='hover:cursor-pointer hover:opacity-70 my-1' onClick={() => window.open(linkedInLink, 'targetWindow', 'width=500, height=500')} />
+                        <img src={twitterIcon} width="28px" height="28px" className='hover:cursor-pointer hover:opacity-70 my-1' onClick={() => window.open(twitterLink, 'targetWindow', 'width=500, height=500')} />
+                        <img src={redditIcon} width="28px" height="28px" className='hover:cursor-pointer hover:opacity-70 my-1' onClick={() => window.open(redditLink, 'targetWindow', 'width=500, height=500')} />
+                        <img src={googleIcon} width="28px" height="28px" className='hover:cursor-pointer hover:opacity-70 my-1' onClick={() => window.open(googleLink, 'targetWindow', 'width=500, height=500')} />
+                        <img src={bloggerIcon} width="28px" height="28px" className='hover:cursor-pointer hover:opacity-70 my-1' onClick={() => window.open(bloggerLink, 'targetWindow', 'width=500, height=500')} />
+                        <img src={evernoteIcon} width="28px" height="28px" className='hover:cursor-pointer hover:opacity-70 my-1' onClick={() => window.open(evernoteLink, 'targetWindow', 'width=500, height=500')} />
                     </div>
                     <div className='pr-10 flex items-center'>
                         <div>
@@ -56,7 +56,11 @@ function Article() {
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div className='flex flex-col'>
+                        <div className='flex justify-end items-center pb-1'>
+                            <h3 className='text-sm text-slate-600'>Save to Archives</h3>
+                            <svg className="w-6 h-6 text-red-600 hover:cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                        </div>
                         <img src={article.multimedia ? article.multimedia[0].url : imagePlaceholder} alt="front page article" />
                     </div>
                 </div>
