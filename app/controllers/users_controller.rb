@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
 
     def create
-        user = User.create(user_params)
-          if user.valid?
+          if !User.exists?(email: params[:email])
+            user = User.create(user_params)
             render json: user, status: :ok
           else
-            render json: user.errors.full_messages, status: :unprocessable_entity
+            render json: "User already exists", status: :unprocessable_entity
           end
       end
 
@@ -20,6 +20,6 @@ class UsersController < ApplicationController
 private
 
     def user_params
-        params.permit(:username, :email, :password, :password_confirmation)
+        params.permit(:username, :email, :first_name, :last_name, :image)
     end
 end

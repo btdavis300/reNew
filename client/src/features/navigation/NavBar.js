@@ -35,7 +35,28 @@ function NavBar() {
         setUser(currentUser)
         document.getElementById("signInDiv").hidden = true;
         document.getElementById("profileDropdown").style.display = "block";
+        handleSignIn(currentUser)
     }
+
+    function handleSignIn(currentUser) {
+        const newUser = {
+            username: currentUser.name,
+            firstname: currentUser.given_name,
+            last_name: currentUser.family_name,
+            image: currentUser.picture,
+            email: currentUser.email
+        }
+        fetch('/signup', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newUser),
+        })
+            .then(r => r.json())
+            .then(data => console.log(data))
+    }
+
 
     useEffect(() => {
         google.accounts.id.initialize({
