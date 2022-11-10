@@ -11,12 +11,18 @@ const userArticlesSlice = createSlice({
     initialState: {
         entities: [],
     },
-    reducers: {},
+    reducers: {
+        savedArticle(state, action) {
+            state.entities = [...state.entities, action.payload];
+        }
+    },
     extraReducers: {
         [fetchUserArticles.fulfilled](state, action) {
             state.entities = action.payload;
         }
     }
 })
+
+export const { savedArticle } = userArticlesSlice.actions;
 
 export default userArticlesSlice.reducer;

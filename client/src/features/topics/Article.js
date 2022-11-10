@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { savedArticle } from '../reducers/userArticlesSlice'
+
 import imagePlaceholder from '../../assets/news-article-placeholder.png'
 import linkedInIcon from '../../assets/linkedin.jpeg'
 import facebookIcon from '../../assets/facebook.jpeg'
@@ -13,9 +15,9 @@ import evernoteIcon from '../../assets/evernote.jpeg'
 function Article() {
     const [archived, setArchived] = useState(false)
 
+    const dispatch = useDispatch()
     const article = useSelector(state => state.article.entity)
     const user = useSelector(state => state.currentUser.set)
-    console.log(user.id)
 
     const pubdate = article.published_date
     const date = pubdate.indexOf('T')
@@ -50,6 +52,7 @@ function Article() {
             .then(r => r.json())
             .then(data => console.log(data))
         setArchived(true)
+        dispatch(savedArticle(archivedArticle))
     }
 
     function unSaveArticle() {
