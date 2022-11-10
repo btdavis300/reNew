@@ -1,8 +1,9 @@
-import React from 'react'
-import { Dropdown } from 'flowbite-react'
+import React, { useEffect, useState } from 'react'
 
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+
+import jwt_decode from 'jwt-decode'
 
 import { fetchTopic } from '../reducers/newsTopicSlice'
 import { titleClicked } from '../reducers/topicTitleSlice'
@@ -14,6 +15,30 @@ import Signup from '../login/Signup'
 import Login from '../login/Login'
 
 function NavBar() {
+    const [user, setUser] = useState({})
+
+
+    function handleCallbackResponse(response) {
+        console.log("Encoded JWT ID token: " + response.credential);
+        const currentUser = jwt_decode(response.credential);
+        console.log(currentUser)
+        setUser(currentUser)
+        document.getElementById("signInDiv").hidden = true;
+    }
+
+    useEffect(() => {
+        google.accounts.id.initialize({
+            client_id: "826420932833-kroeb4i3fvl91qrf8c8di9ocbl4bmhgj.apps.googleusercontent.com",
+            callback: handleCallbackResponse
+        });
+
+        google.accounts.id.renderButton(
+            document.getElementById("signInDiv"),
+            { theme: "outline", size: "large" }
+        )
+    }, [])
+
+
     const history = useHistory()
     const dispatch = useDispatch()
 
@@ -43,21 +68,15 @@ function NavBar() {
                     <div>
                         <h1 className='text-3xl font-bold hover:cursor-pointer' onClick={() => history.push('/')}>ReNew</h1>
                     </div>
+                    <div id="signInDiv">
+                    </div>
                     <div>
-                        <Dropdown label="Profile">
-                            <Dropdown.Item onClick={onSignUp}>
-                                Sign up
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                                Settings
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                                Earnings
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                                Sign out
-                            </Dropdown.Item>
-                        </Dropdown>
+                        {user &&
+                            <div>
+                                <img src={user.picture} alt='' />
+                                <h3>{user.name}</h3>
+                            </div>
+                        }
                     </div>
                 </div>
                 <div>
