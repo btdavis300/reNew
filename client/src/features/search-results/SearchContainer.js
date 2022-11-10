@@ -5,7 +5,6 @@ import SearchArticles from './SearchArticles'
 function SearchContainer() {
     const results = useSelector(state => state.newsSearch.entities)
     const query = useSelector(state => state.searchQuery.entity)
-    console.log(results)
 
     const searchArticle = results.map(article => <SearchArticles key={article._id} article={article} />)
 
