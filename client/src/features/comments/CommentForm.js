@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 
 import { useSelector, useDispatch } from "react-redux"
 import { addedComment } from '../reducers/articleCommentsSlice'
-import { fetchComments } from '../reducers/articleCommentsSlice'
 
 import SignInAlert from '../misc/SignInAlert'
 
@@ -31,13 +30,15 @@ function CommentForm({ url }) {
 
     function handleSubmit(e) {
         e.preventDefault()
+        const d = new Date();
+        const date = `${d.getHours()}:${d.getMinutes()} AM`
         const newComment = {
             user_id: user.id,
             article_url: url,
-            content: formComment
+            content: formComment,
+            user: user.username,
+            posted: date
         }
-        const displayComment = comments[0]
-
         fetch('/comments', {
             method: "POST",
             headers: {
@@ -45,8 +46,7 @@ function CommentForm({ url }) {
             },
             body: JSON.stringify(newComment)
         })
-        dispatch(fetchComments(url))
-        // dispatch(addedComment(displayComment))
+        dispatch(addedComment(newComment))
     }
 
     return (
