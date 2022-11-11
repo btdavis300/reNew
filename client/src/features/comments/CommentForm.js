@@ -30,8 +30,9 @@ function CommentForm({ url }) {
 
     function handleSubmit(e) {
         e.preventDefault()
+        const form = document.getElementById("comment_form")
         const d = new Date();
-        const date = `${d.getHours()}:${d.getMinutes()} AM`
+        const date = `${d.getHours()}:${d.getMinutes()} AM ${d.getFullYear()}-${d.getDate()}-${d.getMonth()}`
         const newComment = {
             user_id: user.id,
             article_url: url,
@@ -47,13 +48,14 @@ function CommentForm({ url }) {
             body: JSON.stringify(newComment)
         })
         dispatch(addedComment(newComment))
+        form.reset()
     }
 
     return (
         <>
             <SignInAlert showAlert={showAlert} setShowAlert={setShowAlert} alertMessage={alertMessage} />
-            <form onClick={handleClick} onSubmit={handleSubmit}>
-                <div className="mb-6">
+            <form onClick={handleClick} onSubmit={handleSubmit} id="comment_form">
+                <div className="mb-6 w-11/12">
                     <label htmlFor="large-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Write Comment</label>
                     <textarea type="text" onChange={(e) => setformComment(e.target.value)} id="large-input" rows="3" cols="100" className="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                 </div>
