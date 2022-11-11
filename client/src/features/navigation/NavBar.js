@@ -46,17 +46,8 @@ function NavBar() {
             image: currentUser.picture,
             email: currentUser.email,
         }
-        fetch('/signup', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(newUser),
-        })
         dispatch(setCurrentUser(newUser))
         dispatch(fetchUserArticles(newUser.id))
-        console.log(newUser.id)
-
     }
 
 
