@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import { useSelector } from "react-redux";
@@ -11,11 +11,11 @@ import SearchContainer from "./features/search-results/SearchContainer";
 import SearchArticle from "./features/search-results/SearchArticle";
 import ArchiveContainer from "./features/archive/ArchiveContainer";
 import ArchiveArticle from "./features/archive/ArchiveArticle";
+import Footer from "./features/home-page/Footer";
 
 function App() {
   const articles = useSelector(state => state.newsTopic.entities)
   const showArticle = useSelector(state => state.showArticle.set)
-  const user = useSelector(state => state.currentUser.set)
 
 
   return (
@@ -42,6 +42,7 @@ function App() {
             </Route>
           </Switch>
         </div>
+        <Footer />
       </BrowserRouter>
     </>
   );

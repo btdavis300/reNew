@@ -4,7 +4,6 @@ import { fetchNews } from '../reducers/newsSlice';
 import { fetchPopular } from '../reducers/popularNewsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import PopularNews from './PopularNews';
-import Footer from './Footer';
 
 function HomeContainer() {
     const dispatch = useDispatch()
@@ -40,7 +39,6 @@ function HomeContainer() {
                     </div>
                 </div>
             </div>
-            <Footer />
         </div>
     )
 }
