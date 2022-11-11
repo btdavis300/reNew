@@ -12,6 +12,7 @@ import signupFormReducer from "./features/reducers/signupFormSlice";
 import userReducer from "./features/reducers/userSlice";
 import userArticlesReducer from "./features/reducers/userArticlesSlice";
 import alertReducer from "./features/reducers/alertSlice";
+import articleCommentsReducer from "./features/reducers/articleCommentsSlice";
 
 
 const store = configureStore({
@@ -28,6 +29,7 @@ const store = configureStore({
         currentUser: userReducer,
         userArticles: userArticlesReducer,
         alert: alertReducer,
+        articleComments: articleCommentsReducer,
     },
 });
 
