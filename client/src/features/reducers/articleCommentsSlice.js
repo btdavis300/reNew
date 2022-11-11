@@ -11,12 +11,18 @@ const articleCommentsSlice = createSlice({
     initialState: {
         entities: [],
     },
-    reducers: {},
+    reducers: {
+        addedComment(state, action) {
+            state.entities = [action.payload, ...state.entities]
+        }
+    },
     extraReducers: {
         [fetchComments.fulfilled](state, action) {
             state.entities = action.payload;
         }
     }
 })
+
+export const { addedComment } = articleCommentsSlice.actions;
 
 export default articleCommentsSlice.reducer;

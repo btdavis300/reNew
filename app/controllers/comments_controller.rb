@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     end
 
     def article_comments
-        comments = Comment.where(article_url: params[:article_url])
+        comments = Comment.where(article_url: params[:article_url]).reverse
         render json: comments, status: :ok
     end
 

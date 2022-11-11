@@ -14,13 +14,13 @@ function CommentContainer({ url }) {
         dispatch(fetchComments(url))
     }, [])
 
-    const commentListItems = comments.map(comment => <Comment key={comment.id} comment={comment} />)
+    const commentListItems = comments.map(comment => <Comment key={comment.article_url} comment={comment} />)
 
     return (
         <div className='flex justify-center pt-7'>
             <div className='w-1/2 flex flex-col'>
                 <div>
-                    <CommentForm />
+                    <CommentForm url={url} />
                 </div>
                 <div className='pt-7'>
                     <ul>

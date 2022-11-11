@@ -23,6 +23,9 @@ module ReNew
     config.load_defaults 6.1
     config.api_only = true
 
+    config.time_zone = 'Mountain Time (US & Canada)'
+    config.active_record.default_timezone = :local
+
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
 
