@@ -1,24 +1,26 @@
-# README
+# ReNew
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ReNew is a web application using Redux state mangaement. Using the New York Times API, this app is intended to be a quick reference to latest news to stay up-to-date and to share the news.
 
-Things you may want to cover:
+## Tools used:
 
-* Ruby version
+- React.
+- Rails API.
+- Redux state mangagment.
+- Google OAuthentication.
+- Tailwind.
 
-* System dependencies
+## User Stories
 
-* Configuration
+As a user I can...
 
-* Database creation
+- Navigate through latest news, popular news, and through different categories of articles.
+- Search for specific results for NYT articles.
+- Sign into ReNew through Google OAuthentication.
+- Save articles to your archive folder.
+- Comment on articles.
+- Share articles through various social medias.
 
-* Database initialization
+## Schema
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+![schema](https://user-images.githubusercontent.com/100324379/201424748-83a33b7e-3d53-4138-8ae2-cb5ae0b7971f.png)
