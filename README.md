@@ -2,6 +2,9 @@
 
 ReNew is a web application using Redux state mangaement. Using the New York Times API, this app is intended to be a quick reference to latest news to stay up-to-date and to share the news.
 
+## Demo Video
+https://www.loom.com/share/2a6d23fa69294c2fb0164ee0b20df02f
+
 ## Tools used:
 
 - React.
